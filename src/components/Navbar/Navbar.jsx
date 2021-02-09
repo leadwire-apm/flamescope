@@ -41,18 +41,20 @@ const styles = {
 class Navbar extends Component {
     render() {
         const { breadcrumbs } = this.props
+        const showMenu = false;
 
         return (
-            <Menu fixed='top' color='grey' inverted>
-                <Container>
-                    <Menu.Item>
-                        <Header as='h2' style={styles.header} inverted><Link to="/#/">🔥FlameScope</Link></Header>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Breadcrumb style={ styles.breadcrumb } icon='right angle' size='small' sections={ breadcrumbs } />
-                    </Menu.Item>
-                </Container>
-            </Menu>
+            (!showMenu ? null :
+                <Menu fixed='top' color='grey' inverted>
+                    <Container>
+                        <Menu.Item>
+                            <Header as='h2' style={styles.header} inverted><Link to="/#/">🔥FlameScope</Link></Header>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <Breadcrumb style={ styles.breadcrumb } icon='right angle' size='small' sections={ breadcrumbs } />
+                        </Menu.Item>
+                    </Container>
+                </Menu>)
         )
     }
 }
