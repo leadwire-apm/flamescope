@@ -79,6 +79,9 @@ const config = {
   },
   devServer: {
     proxy: {
+      '/upload/**': {
+        target: 'http://localhost:5000',
+      },
       '/profile/**': {
         target: 'http://localhost:5000',
       },

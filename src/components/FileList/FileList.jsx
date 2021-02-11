@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dimmer, Loader, Table, Button, Dropdown, Divider } from 'semantic-ui-react'
+import DragAndDrop from '../DragAndDrop'
 
 const styles = {
     resultTable: {
@@ -126,6 +127,7 @@ class FileList extends Component {
                     </Table.Body>
                 </Table>
                 <Divider hidden clearing />
+                <DragAndDrop />
             </div>
         )
     }
