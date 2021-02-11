@@ -4,17 +4,14 @@ from werkzeug.utils import secure_filename
 from app import config
 
 UPLOAD_FOLDER = './'
-MOD_UPLOAD_FILE = Blueprint(
-    'upload', __name__, url_prefix='/upload'
+MOD_DELETE_FILE = Blueprint(
+    'delete', __name__, url_prefix='/delete'
 )
 
-@MOD_UPLOAD_FILE.route("/", methods=['POST', 'GET'])
+@MOD_DELETE_FILE.route("/", methods=['POST', 'GET'])
 def fileUpload():
+    filename = request.args.get('filename')
     target=os.path.join(UPLOAD_FOLDER, config.PROFILE_DIR)
-    if not os.path.isdir(target):
-        os.mkdir(target)
-    file = request.files['file'] 
-    filename = secure_filename(file.filename)
     destination="/".join([target, filename])
-    file.save(destination)
+    os.remove(destination)
     return jsonify(True)

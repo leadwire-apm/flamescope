@@ -79,6 +79,9 @@ const config = {
   },
   devServer: {
     proxy: {
+      '/delete/**': {
+        target: 'http://localhost:5000',
+      },
       '/upload/**': {
         target: 'http://localhost:5000',
       },

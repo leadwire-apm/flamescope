@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dimmer, Loader, Table, Button, Dropdown, Divider } from 'semantic-ui-react'
 import DragAndDrop from '../DragAndDrop'
+import './style.less'
 
 const styles = {
     resultTable: {
@@ -83,6 +84,16 @@ class FileList extends Component {
         this.props.history.push(url)
     }
 
+    handleDelete(filename){
+        if ( confirm( "Are you sure you want to delete this item ?" ) ) {
+            fetch(`/delete/?filename=${filename}`)
+            .then(() => {
+                window.location.reload(false);
+            })
+        }
+        
+    }
+
     render() {
         const self = this
         
@@ -119,6 +130,9 @@ class FileList extends Component {
                                             })}
                                         </Dropdown.Menu>
                                     </Dropdown>
+                                </Button.Group>
+                                <Button.Group color='red' className="ml">
+                                    <Button onClick={() => {self.handleDelete(path)}}>Delete</Button>
                                 </Button.Group>
                                 </Table.Cell>
                             </Table.Row>
